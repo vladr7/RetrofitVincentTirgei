@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity() {
 
 //        login()
         lifecycleScope.launch {
-//            createUser()
-            fetchResources()
+            createUser()
+//            fetchResources()
         }
 
     }

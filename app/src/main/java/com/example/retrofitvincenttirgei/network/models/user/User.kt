@@ -1,18 +1,19 @@
 package com.example.retrofitvincenttirgei.network.models.user
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
 
+@kotlinx.serialization.Serializable
 data class User (
 
-    @SerializedName("id")
+    @SerialName("id")
     var id: String,
 
-    @SerializedName("name")
+    @SerialName("name")
     var name: String,
 
-    @SerializedName("job")
+    @SerialName("job")
     var job: String,
 
-    @SerializedName("createdAt")
+    @SerialName("createdAt")
     var createdAt: String
 )

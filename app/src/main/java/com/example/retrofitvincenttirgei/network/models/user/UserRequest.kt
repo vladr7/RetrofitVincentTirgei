@@ -1,11 +1,12 @@
 package com.example.retrofitvincenttirgei.network.models.user
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
 
+@kotlinx.serialization.Serializable
 data class UserRequest(
-    @SerializedName("name")
+    @SerialName("name")
     var name: String,
 
-    @SerializedName("job")
+    @SerialName("job")
     var job: String
 )

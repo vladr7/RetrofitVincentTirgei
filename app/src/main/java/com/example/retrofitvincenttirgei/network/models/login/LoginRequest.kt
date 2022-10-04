@@ -1,11 +1,14 @@
 package com.example.retrofitvincenttirgei.network.models.login
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class LoginRequest (
-    @SerializedName("email")
+
+    @SerialName("email")
     var email: String,
 
-    @SerializedName("password")
+    @SerialName("password")
     var password: String
 )
