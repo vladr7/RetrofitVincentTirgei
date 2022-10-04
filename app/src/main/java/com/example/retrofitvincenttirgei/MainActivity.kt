@@ -33,11 +33,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun login() {
-        apiClient.getApiService().login(LoginRequest(email = "s@sample.com", password = "mypassword"))
+        apiClient.getApiService(this).login(LoginRequest(email = "s@sample.com", password = "mypassword"))
             .enqueue(object : Callback<LoginResponse> {
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     // Error logging in
                     Toast.makeText(this@MainActivity, "Failed to login!", Toast.LENGTH_SHORT).show()
+                    println("vladr: ${t.message}")
                 }
 
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     private fun fetchPosts() {
 
         // Pass the token as parameter
-        apiClient.getApiService().fetchPosts(token = "Bearer ${sessionManager.fetchAuthToken()}")
+        apiClient.getApiService(this).fetchPosts()
             .enqueue(object : Callback<PostsResponse> {
                 override fun onFailure(call: Call<PostsResponse>, t: Throwable) {
                     Toast.makeText(this@MainActivity, "Error fetching posts!", Toast.LENGTH_SHORT).show()

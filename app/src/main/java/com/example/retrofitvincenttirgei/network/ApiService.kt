@@ -14,6 +14,6 @@ interface ApiService {
     fun login(@Body request: LoginRequest): Call<LoginResponse>
 
     @GET(Constants.POSTS_URL)
-    fun fetchPosts(@Header("Authorization") token: String): Call<PostsResponse>
+    fun fetchPosts(): Call<PostsResponse>
 
 }
