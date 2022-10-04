@@ -52,7 +52,8 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     val loginResponse = response.body()
                     Toast.makeText(this@MainActivity, "OnResponse", Toast.LENGTH_SHORT).show()
-                    println(loginResponse?.token)
+                    println("vladr: ${loginResponse?.token}")
+
 //                    if (loginResponse?.statusCode == 200) {
 //                        Toast.makeText(this@MainActivity, "Successfull login!", Toast.LENGTH_SHORT)
 //                            .show()
