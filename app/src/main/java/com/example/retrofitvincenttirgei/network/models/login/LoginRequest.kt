@@ -1,4 +1,4 @@
-package com.example.retrofitvincenttirgei.network.models
+package com.example.retrofitvincenttirgei.network.models.login
 
 import com.google.gson.annotations.SerializedName
 
