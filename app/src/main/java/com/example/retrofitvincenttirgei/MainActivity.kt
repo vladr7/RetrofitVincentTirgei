@@ -23,6 +23,9 @@ import retrofit2.Response
  *
  * Dummy REST API
  * https://dummyjson.com/docs/auth
+ *
+ * Regres REST API
+ * https://reqres.in/
  */
 
 private lateinit var sessionManager: SessionManager
@@ -36,12 +39,11 @@ class MainActivity : AppCompatActivity() {
         apiClient = ApiClient()
         sessionManager = SessionManager(this)
 
-//        login()
         lifecycleScope.launch {
             delay(3000L)
+            login()
 //            createUser()
-            fetchResources()
-            fetchResources()
+//            fetchResources()
         }
 
     }
@@ -71,24 +73,36 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun login() {
-        apiClient.getApiService(this)
-            .login(LoginRequest(email = "eve.holt@reqres.in", password = "mypassword"))
-            .enqueue(object : Callback<LoginResponse> {
-                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                    // Error logging in
-                    Toast.makeText(this@MainActivity, "Failed to login!", Toast.LENGTH_SHORT).show()
-                    Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
-                    println("vladr: ${t.message}")
-                }
+    private suspend fun login() {
+        try {
+            val result = apiClient.getApiService(this).login(LoginRequest(email = "eve.holt@reqres.in", password = "mypassword"))
+            println("vladr: token: ${result.body()?.token}")
+            if(result.isSuccessful) {
+                sessionManager.saveAuthToken(result.body()?.token.toString())
+            } else {
+                println("vladr: result not successfull: ${result.errorBody()}")
+            }
+        } catch (e: java.lang.Exception) {
+            println("vladr: error: ${e.message}")
+        }
 
-                override fun onResponse(
-                    call: Call<LoginResponse>,
-                    response: Response<LoginResponse>
-                ) {
-                    val loginResponse = response.body()
-                    Toast.makeText(this@MainActivity, "OnResponse", Toast.LENGTH_SHORT).show()
-                    println("vladr: ${loginResponse?.token}")
+//        apiClient.getApiService(this)
+//            .login(LoginRequest(email = "eve.holt@reqres.in", password = "mypassword"))
+//            .enqueue(object : Callback<LoginResponse> {
+//                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+//                    // Error logging in
+//                    Toast.makeText(this@MainActivity, "Failed to login!", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+//                    println("vladr: ${t.message}")
+//                }
+//
+//                override fun onResponse(
+//                    call: Call<LoginResponse>,
+//                    response: Response<LoginResponse>
+//                ) {
+//                    val loginResponse = response.body()
+//                    Toast.makeText(this@MainActivity, "OnResponse", Toast.LENGTH_SHORT).show()
+//                    println("vladr: ${loginResponse?.token}")
 
 //                    if (loginResponse?.statusCode == 200) {
 //                        Toast.makeText(this@MainActivity, "Successfull login!", Toast.LENGTH_SHORT)
@@ -103,7 +117,7 @@ class MainActivity : AppCompatActivity() {
 //                        ).show()
 //                        println("vladr: ${loginResponse?.statusCode}")
 //                    }
-                }
-            })
+//                }
+//            })
     }
 }
