@@ -1,24 +1,25 @@
 package com.example.retrofitvincenttirgei.network.models.resource
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
 
+@kotlinx.serialization.Serializable
 data class ResourcesResponse(
 
-    @SerializedName("page")
+    @SerialName("page")
     val page: Int,
 
-    @SerializedName("per_page")
+    @SerialName("per_page")
     val per_page: Int,
 
-    @SerializedName("total")
+    @SerialName("total")
     val total: Int,
 
-    @SerializedName("total_pages")
+    @SerialName("total_pages")
     val total_pages: Int,
 
-    @SerializedName("data")
+    @SerialName("data")
     val data: List<Data>,
 
-    @SerializedName("support")
+    @SerialName("support")
     val support: Support,
 )

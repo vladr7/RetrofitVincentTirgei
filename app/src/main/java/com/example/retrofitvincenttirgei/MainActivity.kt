@@ -8,8 +8,10 @@ import com.example.retrofitvincenttirgei.network.ApiClient
 import com.example.retrofitvincenttirgei.network.SessionManager
 import com.example.retrofitvincenttirgei.network.models.login.LoginRequest
 import com.example.retrofitvincenttirgei.network.models.login.LoginResponse
+import com.example.retrofitvincenttirgei.network.models.resource.ResourcesResponse
 import com.example.retrofitvincenttirgei.network.models.user.UserRequest
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,8 +37,8 @@ class MainActivity : AppCompatActivity() {
 
 //        login()
         lifecycleScope.launch {
-            createUser()
-//            fetchResources()
+//            createUser()
+            fetchResources()
         }
 
     }
@@ -45,9 +47,9 @@ class MainActivity : AppCompatActivity() {
         try {
             val result = apiClient.getApiService(this)
                 .getResources()
-            println("vladr: ${result}")
+            println("vladr success: ${result}")
         } catch (e: java.lang.Exception) {
-            println("vladr: ${e.message}")
+            println("vladr error: ${e.message}")
         }
     }
 

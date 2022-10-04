@@ -1,11 +1,13 @@
 package com.example.retrofitvincenttirgei.network.models.resource
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
 
+@kotlinx.serialization.Serializable
 data class Support(
-    @SerializedName("text")
-    val text: String,
 
-    @SerializedName("url")
-    val url: String
+    @SerialName("url")
+    val url: String,
+
+    @SerialName("text")
+    val text: String,
 )

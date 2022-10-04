@@ -1,20 +1,22 @@
 package com.example.retrofitvincenttirgei.network.models.resource
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
 
+@kotlinx.serialization.Serializable
 data class Data(
-    @SerializedName("color")
-    val color: String,
 
-    @SerializedName("id")
+    @SerialName("id")
     val id: Int,
 
-    @SerializedName("name")
+    @SerialName("color")
+    val color: String,
+
+    @SerialName("name")
     val name: String,
 
-    @SerializedName("pantone_value")
+    @SerialName("pantone_value")
     val pantone_value: String,
 
-    @SerializedName("year")
+    @SerialName("year")
     val year: Int
 )
