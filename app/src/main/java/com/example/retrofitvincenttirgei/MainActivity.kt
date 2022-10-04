@@ -10,6 +10,7 @@ import com.example.retrofitvincenttirgei.network.models.login.LoginRequest
 import com.example.retrofitvincenttirgei.network.models.login.LoginResponse
 import com.example.retrofitvincenttirgei.network.models.resource.ResourcesResponse
 import com.example.retrofitvincenttirgei.network.models.user.UserRequest
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import retrofit2.Call
@@ -37,7 +38,9 @@ class MainActivity : AppCompatActivity() {
 
 //        login()
         lifecycleScope.launch {
+            delay(3000L)
 //            createUser()
+            fetchResources()
             fetchResources()
         }
 

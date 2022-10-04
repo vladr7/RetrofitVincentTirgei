@@ -18,7 +18,7 @@ interface ApiService {
     @POST(Constants.USERS_URL)
     suspend fun createUser(@Body userRequest: UserRequest): User // the new God in town
 
-    @POST(Constants.RESOURCE_URL)
+    @GET(Constants.RESOURCE_URL)
     suspend fun getResources(): ResourcesResponse
 
 }
