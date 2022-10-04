@@ -8,10 +8,7 @@ import com.example.retrofitvincenttirgei.network.ApiClient
 import com.example.retrofitvincenttirgei.network.SessionManager
 import com.example.retrofitvincenttirgei.network.models.login.LoginRequest
 import com.example.retrofitvincenttirgei.network.models.login.LoginResponse
-import com.example.retrofitvincenttirgei.network.models.post.PostsResponse
-import com.example.retrofitvincenttirgei.network.models.user.User
 import com.example.retrofitvincenttirgei.network.models.user.UserRequest
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,11 +34,21 @@ class MainActivity : AppCompatActivity() {
         sessionManager = SessionManager(this)
 
 //        login()
-//        fetchPosts()
         lifecycleScope.launch {
-            createUser()
+//            createUser()
+            fetchResources()
         }
 
+    }
+
+    private suspend fun fetchResources() {
+        try {
+            val result = apiClient.getApiService(this)
+                .getResources()
+            println("vladr: ${result}")
+        } catch (e: java.lang.Exception) {
+            println("vladr: ${e.message}")
+        }
     }
 
     private suspend fun createUser() {
@@ -91,27 +98,6 @@ class MainActivity : AppCompatActivity() {
 //                        ).show()
 //                        println("vladr: ${loginResponse?.statusCode}")
 //                    }
-                }
-            })
-    }
-
-    private fun fetchPosts() {
-
-        // Pass the token as parameter
-        apiClient.getApiService(this).fetchPosts()
-            .enqueue(object : Callback<PostsResponse> {
-                override fun onFailure(call: Call<PostsResponse>, t: Throwable) {
-                    Toast.makeText(this@MainActivity, "Error fetching posts!", Toast.LENGTH_SHORT)
-                        .show()
-                    println("vladr: ${t.message}")
-                }
-
-                override fun onResponse(
-                    call: Call<PostsResponse>,
-                    response: Response<PostsResponse>
-                ) {
-                    Toast.makeText(this@MainActivity, "Success fetching posts!", Toast.LENGTH_SHORT)
-                        .show()
                 }
             })
     }
