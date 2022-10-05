@@ -15,6 +15,8 @@ import retrofit2.Response
 /**
  * Article
  * https://medium.com/android-news/token-authorization-with-retrofit-android-oauth-2-0-747995c79720
+ *
+ * https://betterprogramming.pub/android-access-token-logic-with-retrofit-okhttp-interceptors-740ea48547a0
  */
 
     private lateinit var sessionManager: SessionManager
